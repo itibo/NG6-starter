@@ -16,5 +16,18 @@ angular.module('app', [
     // #how-to-configure-your-server-to-work-with-html5mode
     $locationProvider.html5Mode(true).hashPrefix('!');
   })
+  .config(($stateProvider, $urlRouterProvider) => {
+    "ngInject";
+
+    $stateProvider
+      .state('404', {
+        url: '/404',
+        template: '<page404></page404>'
+      });
+
+    $urlRouterProvider
+      .otherwise('404');
+  })
+
 
   .component('app', AppComponent);
