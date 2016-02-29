@@ -4,11 +4,13 @@ import Common from './common/common';
 import Components from './components/components';
 import AppComponent from './app.component';
 import 'normalize.css';
+import Translate from 'angular-translate'
 
 angular.module('app', [
     uiRouter,
     Common.name,
-    Components.name
+    Components.name,
+    Translate
   ])
   .config(($locationProvider) => {
     "ngInject";
@@ -16,6 +18,13 @@ angular.module('app', [
     // #how-to-configure-your-server-to-work-with-html5mode
     $locationProvider.html5Mode(true).hashPrefix('!');
   })
+  .config(['$translateProvider', ($translateProvider) => {
+    "ngInject";
+
+    $translateProvider
+      .preferredLanguage('en')
+      .fallbackLanguage('en')
+  }])
   .config(($stateProvider, $urlRouterProvider) => {
     "ngInject";
 
