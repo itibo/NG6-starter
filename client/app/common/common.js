@@ -3,8 +3,9 @@ import Navbar from './navbar/navbar';
 import Hero from './hero/hero';
 import User from './user/user';
 
-import Footer from './footer/footer'
-import Page404 from './page404/page404';
+import Footer from './footer/footer';
+import ErrorPages from './errorPages/errorPages';
+
 
 let commonModule = angular.module('app.common', [
   Navbar.name,
@@ -12,7 +13,8 @@ let commonModule = angular.module('app.common', [
   User.name,
 
   Footer.name,
-  Page404.name
+
+  ErrorPages.name
 ]);
 
 export default commonModule;

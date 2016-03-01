@@ -25,17 +25,11 @@ angular.module('app', [
       .preferredLanguage('en')
       .fallbackLanguage('en')
   }])
-  .config(($stateProvider, $urlRouterProvider) => {
+  .config(($urlRouterProvider) => {
     "ngInject";
 
-    $stateProvider
-      .state('404', {
-        url: '/404',
-        template: '<page404></page404>'
-      });
-
     $urlRouterProvider
-      .otherwise('404');
+      .otherwise('error/404');
   })
 
 
