@@ -4,8 +4,6 @@ import errorPagesComponent from './errorPages.component';
 import Translate from 'angular-translate';
 import TranslateEnDictionary from './translations-en';
 
-import template from './errorPages.html';
-
 import page401 from './page401/page401';
 import page404 from './page404/page404';
 import page405 from './page405/page405';
@@ -32,7 +30,7 @@ let errorPagesModule = angular.module('errorPages', [
     .state('error', {
       abstract: true,
       url: '/error',
-      template: template
+      template: '<error-pages></error-pages>'
     });
 })
 
