@@ -1,5 +1,6 @@
 <div>
   <h2>Register</h2>
+  <p ng-if="vm.error_msg">{{vm.error_msg}}</p>
   <form name="form" ng-submit="vm.register()" role="form">
     <div class="form-group" ng-class="{ 'has-error': form.firstName.$dirty && form.firstName.$error.required }">
       <label for="username">First name</label>

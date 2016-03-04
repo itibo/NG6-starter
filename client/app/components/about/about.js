@@ -11,7 +11,12 @@ let aboutModule = angular.module('about', [
   $stateProvider
     .state('about', {
       url: '/about',
-      template: '<about></about>'
+      template: '<about></about>',
+      resolve: {
+        tst: function($http){
+          return $http.get('/somewhere').then(()=>{}, ()=>{});
+        }
+      }
     });
 })
 

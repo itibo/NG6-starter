@@ -6,7 +6,7 @@ let loginComponent = {
   restrict: 'E',
   bindings: {},
   template,
-  controller,
+  controller: controller,
   controllerAs: 'vm'
 };
 

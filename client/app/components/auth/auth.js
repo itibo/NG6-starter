@@ -3,8 +3,13 @@ import uiRouter from 'angular-ui-router';
 import authComponent from './auth.component';
 import Translate from 'angular-translate';
 import TranslateEnDictionary from './translations-en';
+import Store from 'angular-storage';
 
-import authFactory from './auth.factory';
+import storeService from './store.service';
+import HttpInterceptor from './auth.httpinterceptor'
+import authService from './auth.service';
+
+
 import Login from './login/login';
 import SignUp from './signup/signup';
 
@@ -12,6 +17,7 @@ import SignUp from './signup/signup';
 let authModule = angular.module('auth', [
   uiRouter,
   Translate,
+  Store,
 
   Login.name,
   SignUp.name
@@ -21,8 +27,15 @@ let authModule = angular.module('auth', [
   $translateProvider
     .translations('en', TranslateEnDictionary);
 }])
+.config(['$httpProvider', ($httpProvider)=>{
+  $httpProvider.interceptors.push('HttpInterceptor');
+}])
 
-.factory('authService', authFactory)
+
+.service('StoreService', storeService)
+.service('HttpInterceptor', HttpInterceptor)
+.service('Auth', authService)
+
 
 .component('auth', authComponent);
 
