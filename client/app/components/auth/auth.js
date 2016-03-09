@@ -31,9 +31,27 @@ let authModule = angular.module('auth', [
   $httpProvider.interceptors.push('HttpInterceptor');
 }])
 
+.run(['$rootScope', 'Auth', '$state', ($rootScope, Auth, $state)=>{
+
+  $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
+    let requireLogin = toState.hasOwnProperty('data') && toState.data.requireLogin;
+
+    if (requireLogin && !Auth.isAuthenticated) {
+      event.preventDefault();
+
+      console.log("params sent: %O", {toState, toParams})
+      $state.go('login', {toState, toParams});
+
+      // $state.go(toState.name, toParams);
+    }
+  })
+
+}])
+
 
 .service('StoreService', storeService)
-.service('HttpInterceptor', HttpInterceptor)
+// .service('HttpInterceptor', HttpInterceptor)
+.factory('HttpInterceptor', HttpInterceptor.createInstance)
 .service('Auth', authService)
 
 

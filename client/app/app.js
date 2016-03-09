@@ -25,8 +25,16 @@ angular.module('app', [
       .preferredLanguage('en')
       .fallbackLanguage('en')
   }])
-  .config(($urlRouterProvider) => {
+  .config(($stateProvider, $urlRouterProvider) => {
     "ngInject";
+
+    $stateProvider
+      .state('app', {
+        abstract: true,
+        data: {
+          requireLogin: true
+        }
+      });
 
     $urlRouterProvider
       .otherwise('error/404');

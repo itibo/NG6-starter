@@ -20,6 +20,10 @@ let loginModule = angular.module('login', [
   $stateProvider
     .state('login', {
       url: '/login',
+      params: {
+        toState: {},
+        toParams: {}
+      },
       template: '<login></login>'
     });
 })

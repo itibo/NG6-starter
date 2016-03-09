@@ -1,6 +1,12 @@
 class AboutController {
-  constructor() {
+  constructor($http) {
+    'ngInject';
+
+    this.$http = $http;
     this.name = 'about';
+
+    $http.get('/somewhere')
+
   }
 }
 

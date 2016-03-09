@@ -12,6 +12,7 @@ class authService {
     this.storeService = StoreService;
 
     this.users = new Map();
+    this.loggedIn = new Set();
   }
 
   signUp(user){
@@ -36,25 +37,28 @@ class authService {
 
   login(user){
     return this.$q((resolve, reject) => {
+
       if (!this.users.has(user.username)) {
+        this.loggedIn.delete(this.storeService.get('token'));
         this.storeService.destroy('token');
-        reject({message: 'Wrong username or password'});
+                reject({message: 'Wrong username or password'});
       } else {
         let user_obj = this.users.get(user.username);
         if (user_obj.hash === setToken(user)){
           this.storeService.set('token', uid(20))
+          this.loggedIn.add(this.storeService.get('token'));
           resolve({message: 'Ok'});
         } else {
+          this.loggedIn.delete(this.storeService.get('token'));
           this.storeService.destroy('token');
           reject({message: 'Wrong username or password'});
         }
       }
     })
+  }
 
-
-
-
-
+  get isAuthenticated(){
+    return this.loggedIn.has(this.storeService.get('token'));;
   }
 
  }

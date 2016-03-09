@@ -9,14 +9,9 @@ let aboutModule = angular.module('about', [
 .config(($stateProvider) => {
   "ngInject";
   $stateProvider
-    .state('about', {
+    .state('app.about', {
       url: '/about',
       template: '<about></about>',
-      resolve: {
-        tst: function($http){
-          return $http.get('/somewhere').then(()=>{}, ()=>{});
-        }
-      }
     });
 })
 
