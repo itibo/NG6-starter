@@ -41,7 +41,7 @@ class authService {
       if (!this.users.has(user.username)) {
         this.loggedIn.delete(this.storeService.get('token'));
         this.storeService.destroy('token');
-                reject({message: 'Wrong username or password'});
+        reject({message: 'Wrong username or password'});
       } else {
         let user_obj = this.users.get(user.username);
         if (user_obj.hash === setToken(user)){

@@ -31,6 +31,7 @@ angular.module('app', [
     $stateProvider
       .state('app', {
         abstract: true,
+        template: '<ui-view/>',
         data: {
           requireLogin: true
         }

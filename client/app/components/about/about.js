@@ -11,7 +11,7 @@ let aboutModule = angular.module('about', [
   $stateProvider
     .state('app.about', {
       url: '/about',
-      template: '<about></about>',
+      template: '<about></about>'
     });
 })
 

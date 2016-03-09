@@ -38,11 +38,10 @@ let authModule = angular.module('auth', [
 
     if (requireLogin && !Auth.isAuthenticated) {
       event.preventDefault();
-
-      console.log("params sent: %O", {toState, toParams})
       $state.go('login', {toState, toParams});
-
-      // $state.go(toState.name, toParams);
+    } else if (Auth.isAuthenticated && ['login', 'signup'].indexOf(toState.name) > -1){
+      event.preventDefault();
+      $state.go('home');
     }
   })
 
@@ -50,7 +49,6 @@ let authModule = angular.module('auth', [
 
 
 .service('StoreService', storeService)
-// .service('HttpInterceptor', HttpInterceptor)
 .factory('HttpInterceptor', HttpInterceptor.createInstance)
 .service('Auth', authService)
 
